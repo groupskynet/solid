@@ -1,0 +1,6 @@
+@solid_HostAddress = http://localhost:5128
+
+GET {{solid_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
