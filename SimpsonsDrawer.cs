@@ -1,5 +1,7 @@
 class SimpsonsDrawer {
-  public void Draw(Homer homer) {
-    Console.WriteLine("Homer Simpson draw");
+  public void Draw(Cartoon[] simpsons) {
+    foreach (var simpson in simpsons) {
+      simpson.Draw();
+    }
   }
 }

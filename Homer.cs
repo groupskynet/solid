@@ -1,5 +1,11 @@
-class Homer {
-  public void eat() {
+class Homer : Cartoon {
+
+    public void Draw()
+    {
+      Console.WriteLine("Homer Simpson draw");
+    }
+
+    public void eat() {
     Console.WriteLine("Homer Simpson eat");
   }
   public void takeBeer() {
