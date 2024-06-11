@@ -7,25 +7,25 @@ namespace solid.Controllers;
 [Route("api/[controller]")]
 public class ArticuloController : ControllerBase
 {
-    private readonly Logger _loggin;
-    private readonly FileRepository _file;
 
     public  ArticuloController() {
-      _loggin = new Logger();
-      _file = new FileRepository();
     }
 
     [HttpPost]
-    public void saveVideo([FromBody] VideoRequest request) {
+    async public void saveVideo([FromBody] VideoRequest request) {
       try {
         // logs
-        this._loggin.Info($"vamos a guardar el video {request.titulo}");
+        Console.WriteLine($"Info: vamos a guardar el video {request.titulo}");
         // guardar articulo
-        _file.Save($@"./storage/articulos/{request.titulo}.txt", request.contenido);
+        using (FileStream fs = new FileStream($@"./storage/articulos/{request.titulo}.txt", FileMode.Create))
+        {
+          using var writer = new StreamWriter(fs);
+          await writer.WriteLineAsync(request.contenido);
+        }
         // logs
-        this._loggin.Info($"artículo {request.titulo} guardado");
+        Console.WriteLine($"Info: artículo {request.titulo} guardado");
       }catch (Exception ex) {
-        _loggin.Error("Error al guardar el video", ex);
+        Console.WriteLine($"Error: no se pudo guardar el video {request.titulo} - {ex.Message}");
       }
     }
 }
