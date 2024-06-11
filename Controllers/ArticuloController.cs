@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using solid.Services;
 
 namespace solid.Controllers;
 
